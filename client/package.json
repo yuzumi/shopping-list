@@ -39,6 +39,7 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
+    "@types/reactstrap": "^8.0.1",
     "@types/uuid": "^3.4.5"
   }
 }
