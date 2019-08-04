@@ -5,15 +5,21 @@ import { ItemList, Item } from 'Models';
 import ShoppingListItem from 'components/list/ShoppingListItem';
 import { connect } from 'react-redux';
 import { actions, selectors } from 're-ducks/modules/item';
+import Loader from 'components/shared/Loader';
+
+export interface Data {
+  items: ItemList;
+  isLoading: boolean;
+}
 
 export interface ShoppingListProps {
-  item: any;
+  data: Data;
   getItems: () => void;
   deleteItem: (itemId: string) => void;
 }
 
 const ShoppingList: FunctionComponent<ShoppingListProps> = ({
-  item,
+  data: { items, isLoading },
   getItems,
   deleteItem
 }) => {
@@ -32,14 +38,20 @@ const ShoppingList: FunctionComponent<ShoppingListProps> = ({
   };
 
   return (
-    <ListGroup>
-      <TransitionGroup>{item.items.map(renderItem)}</TransitionGroup>
-    </ListGroup>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <ListGroup>
+          <TransitionGroup>{items.map(renderItem)}</TransitionGroup>
+        </ListGroup>
+      )}
+    </>
   );
 };
 
 const mapStateToProps = (state: any) => ({
-  item: selectors.selectItem(state)
+  data: selectors.selectItem(state)
 });
 
 export default connect(
