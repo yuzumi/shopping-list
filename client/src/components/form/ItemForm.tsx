@@ -26,6 +26,7 @@ const ItemForm: FunctionComponent<ItemFormProps> = ({
         placeholder="Enter the item name"
         value={value}
         onChange={onChange}
+        required
       />
     </FormGroup>
     <Button color="light" size="sm" type="submit">
