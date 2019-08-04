@@ -18,8 +18,6 @@ const ShoppingList: FunctionComponent<ShoppingListProps> = ({
   deleteItem
 }) => {
   useEffect(() => {
-    console.log('get items');
-
     getItems();
   }, []);
 
