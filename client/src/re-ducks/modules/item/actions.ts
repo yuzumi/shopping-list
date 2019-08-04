@@ -1,26 +1,34 @@
 import types from 're-ducks/modules/item/types';
+import { Dispatch } from 'redux';
+import axios from 'axios';
 
 const itemsLoading = () => ({
   type: types.ITEMS_LOADING
 });
 
-const addItem = (name: string) => ({
-  type: types.ADD_ITEM,
-  payload: {
-    name
-  }
-});
+const addItem = (name: string) => (dispatch: Dispatch) => {
+  axios
+    .post('/api/items', { name })
+    .then(response =>
+      dispatch({ type: types.ADD_ITEM, payload: { item: response.data } })
+    );
+};
 
-const getItems = () => ({
-  type: types.GET_ITEMS
-});
+const getItems = () => (dispatch: Dispatch) => {
+  dispatch(itemsLoading());
 
-const deleteItem = (id: string) => ({
-  type: types.DELETE_ITEM,
-  payload: {
-    id
-  }
-});
+  axios
+    .get('/api/items')
+    .then(response =>
+      dispatch({ type: types.GET_ITEMS, payload: { items: response.data } })
+    );
+};
+
+const deleteItem = (id: string) => (dispatch: Dispatch) => {
+  axios
+    .delete(`/api/items/${id}`)
+    .then(() => dispatch({ type: types.DELETE_ITEM, payload: { id } }));
+};
 
 export default {
   addItem,
