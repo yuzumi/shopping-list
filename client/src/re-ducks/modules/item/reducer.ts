@@ -3,18 +3,7 @@ import types from 're-ducks/modules/item/types';
 
 // Just for test
 const initialState = {
-  items: [
-    {
-      _id: v4(),
-      name: 'Milk',
-      date: new Date()
-    },
-    {
-      _id: v4(),
-      name: 'Eggs',
-      date: new Date()
-    }
-  ],
+  items: [],
   isLoading: false
 };
 
