@@ -14,7 +14,8 @@ const initialState = {
       name: 'Eggs',
       date: new Date()
     }
-  ]
+  ],
+  isLoading: false
 };
 
 export default function reducer(state = initialState, { type, payload }: any) {
@@ -33,6 +34,11 @@ export default function reducer(state = initialState, { type, payload }: any) {
       return {
         ...state,
         items: state.items.filter(item => item._id !== payload.id)
+      };
+    case types.ITEMS_LOADING:
+      return {
+        ...state,
+        isLoading: true
       };
     default:
       return state;
