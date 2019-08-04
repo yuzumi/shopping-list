@@ -25,6 +25,7 @@ const ItemCreator: FunctionComponent<ItemCreatorProps> = ({ addItem }) => {
     event.preventDefault();
 
     addItem(name);
+    setName('');
     toggle();
   };
 
