@@ -1,15 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  Container
-} from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, Container } from 'reactstrap';
 import useBoolean, { UseBoolean } from 'hooks/useBoolean';
+import AppBrand from 'components/layout/AppBrand';
+import AppNav from 'components/layout/AppNav';
 
 const AppNavbar: FunctionComponent = () => {
   const { value: isOpen, toggle }: UseBoolean = useBoolean();
@@ -17,16 +10,10 @@ const AppNavbar: FunctionComponent = () => {
   return (
     <Navbar className="mb-5" color="light" light expand="sm">
       <Container>
-        <NavbarBrand href="/">Shopping List</NavbarBrand>
+        <AppBrand />
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink href="https://github.com/yuzumi/shopping-list.git">
-                GitHub
-              </NavLink>
-            </NavItem>
-          </Nav>
+          <AppNav right />
         </Collapse>
       </Container>
     </Navbar>
