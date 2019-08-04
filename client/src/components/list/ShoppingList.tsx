@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { ListGroup } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { ItemList, Item } from 'Models';
@@ -14,8 +14,15 @@ export interface ShoppingListProps {
 
 const ShoppingList: FunctionComponent<ShoppingListProps> = ({
   item,
+  getItems,
   deleteItem
 }) => {
+  useEffect(() => {
+    console.log('get items');
+
+    getItems();
+  }, []);
+
   const renderItem = (item: Item) => {
     const handleDelete = () => deleteItem(item._id);
 
