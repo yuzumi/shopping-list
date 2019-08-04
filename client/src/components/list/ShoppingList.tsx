@@ -1,16 +1,19 @@
 import React, { FunctionComponent } from 'react';
-import { Container, ListGroup } from 'reactstrap';
+import { ListGroup } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { ItemList, Item } from 'Models';
 import ShoppingListItem from 'components/list/ShoppingListItem';
+import { connect } from 'react-redux';
+import { actions, selectors } from 're-ducks/modules/item';
 
 export interface ShoppingListProps {
-  items: ItemList;
-  deleteItem: (itemId: number | string) => void;
+  item: any;
+  getItems: () => void;
+  deleteItem: (itemId: string) => void;
 }
 
 const ShoppingList: FunctionComponent<ShoppingListProps> = ({
-  items,
+  item,
   deleteItem
 }) => {
   const renderItem = (item: Item) => {
@@ -24,14 +27,17 @@ const ShoppingList: FunctionComponent<ShoppingListProps> = ({
   };
 
   return (
-    <Container>
-      <ListGroup>
-        <TransitionGroup className="shopping-list">
-          {items.map(renderItem)}
-        </TransitionGroup>
-      </ListGroup>
-    </Container>
+    <ListGroup>
+      <TransitionGroup>{item.items.map(renderItem)}</TransitionGroup>
+    </ListGroup>
   );
 };
 
-export default ShoppingList;
+const mapStateToProps = (state: any) => ({
+  item: selectors.selectItem(state)
+});
+
+export default connect(
+  mapStateToProps,
+  { getItems: actions.getItems, deleteItem: actions.deleteItem }
+)(ShoppingList);
