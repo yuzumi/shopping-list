@@ -1,5 +1,9 @@
 import types from 're-ducks/modules/item/types';
 
+const itemsLoading = () => ({
+  type: types.ITEMS_LOADING
+});
+
 const addItem = (name: string) => ({
   type: types.ADD_ITEM,
   payload: {
@@ -21,5 +25,6 @@ const deleteItem = (id: string) => ({
 export default {
   addItem,
   getItems,
-  deleteItem
+  deleteItem,
+  itemsLoading
 };
