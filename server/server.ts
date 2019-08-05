@@ -3,6 +3,7 @@ import config from 'config';
 import mongoose from 'mongoose';
 
 import ItemRouter from './routes/item.router';
+import UserRouter from './routes/user.router';
 
 const app: Application = express();
 
@@ -24,7 +25,8 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/items', ItemRouter);
+app.use('/api/item', ItemRouter);
+app.use('/api/user', UserRouter);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
