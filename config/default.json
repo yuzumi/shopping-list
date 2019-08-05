@@ -2,5 +2,12 @@
   "port": 5000,
   "database": {
     "uri": "mongodb://localhost:27017/shopping-list"
+  },
+  "bcrypt": {
+    "salt": 10
+  },
+  "jwt": {
+    "secret": "vfv;vp943443",
+    "expiresIn": 3600
   }
 }
