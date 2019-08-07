@@ -25,7 +25,7 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/item', ItemRouter);
+app.use('/api/items', ItemRouter);
 app.use('/api/user', UserRouter);
 
 app.listen(port, () => {
